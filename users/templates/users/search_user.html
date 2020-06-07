@@ -1,0 +1,22 @@
+{% extends "blog/base.html" %}
+{% block content %}
+
+<div class="content-section">
+    {% if user_profile %}
+    {% for profile in user_profile %}
+    <div class="media">
+        <img class="rounded-circle account-img" src="{{ profile.image.url }}">
+        <div class="media-body">
+            <h2 class="account-heading">{{ profile.user.username }}</h2>
+            <p class="text-secondary">{{ profile.user.email }}</p>
+            <a href="{% url 'public-profile' profile.user.id %}" class="btn btn-primary">Blogs by
+                {{profile.user.username}}</a>
+        </div>
+    </div>
+    {% endfor %}
+    {% else %}
+    <h3>No users found</h3>
+    {% endif %}
+</div>
+
+{% endblock content %}
